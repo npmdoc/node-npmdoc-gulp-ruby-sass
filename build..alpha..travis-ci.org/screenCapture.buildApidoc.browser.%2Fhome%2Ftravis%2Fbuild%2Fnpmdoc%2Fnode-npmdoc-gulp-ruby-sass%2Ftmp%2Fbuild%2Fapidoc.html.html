@@ -1,0 +1,557 @@
+<html><head></head><body><div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a href="https://github.com/sindresorhus/gulp-ruby-sass#readme">gulp-ruby-sass (v2.1.1)</a>
+</h1>
+<h4>Compile Sass to CSS with Ruby Sass</h4>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.gulp-ruby-sass">module gulp-ruby-sass</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.gulp-ruby-sass.clearCache">
+            function <span class="apidocSignatureSpan">gulp-ruby-sass.</span>clearCache
+            <span class="apidocSignatureSpan">(tempDir)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.gulp-ruby-sass.logError">
+            function <span class="apidocSignatureSpan">gulp-ruby-sass.</span>logError
+            <span class="apidocSignatureSpan">(err)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">gulp-ruby-sass.</span>logger</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">gulp-ruby-sass.</span>utils</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.gulp-ruby-sass.logger">module gulp-ruby-sass.logger</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.gulp-ruby-sass.logger.error">
+            function <span class="apidocSignatureSpan">gulp-ruby-sass.logger.</span>error
+            <span class="apidocSignatureSpan">(stream, err)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.gulp-ruby-sass.logger.prettifyDirectoryLogging">
+            function <span class="apidocSignatureSpan">gulp-ruby-sass.logger.</span>prettifyDirectoryLogging
+            <span class="apidocSignatureSpan">(msg, intermediateDir)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.gulp-ruby-sass.logger.stderr">
+            function <span class="apidocSignatureSpan">gulp-ruby-sass.logger.</span>stderr
+            <span class="apidocSignatureSpan">(stream, intermediateDir, data)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.gulp-ruby-sass.logger.stdout">
+            function <span class="apidocSignatureSpan">gulp-ruby-sass.logger.</span>stdout
+            <span class="apidocSignatureSpan">(stream, intermediateDir, data)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.gulp-ruby-sass.logger.verbose">
+            function <span class="apidocSignatureSpan">gulp-ruby-sass.logger.</span>verbose
+            <span class="apidocSignatureSpan">(command, args)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.gulp-ruby-sass.utils">module gulp-ruby-sass.utils</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.gulp-ruby-sass.utils.calculateBase">
+            function <span class="apidocSignatureSpan">gulp-ruby-sass.utils.</span>calculateBase
+            <span class="apidocSignatureSpan">(source)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.gulp-ruby-sass.utils.createIntermediatePath">
+            function <span class="apidocSignatureSpan">gulp-ruby-sass.utils.</span>createIntermediatePath
+            <span class="apidocSignatureSpan">(sources, matches, options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.gulp-ruby-sass.utils.emitErr">
+            function <span class="apidocSignatureSpan">gulp-ruby-sass.utils.</span>emitErr
+            <span class="apidocSignatureSpan">(stream, err)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.gulp-ruby-sass.utils.replaceLocation">
+            function <span class="apidocSignatureSpan">gulp-ruby-sass.utils.</span>replaceLocation
+            <span class="apidocSignatureSpan">(origPath, currentLoc, newLoc)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.gulp-ruby-sass" id="apidoc.module.gulp-ruby-sass">module gulp-ruby-sass</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.gulp-ruby-sass.clearCache" id="apidoc.element.gulp-ruby-sass.clearCache">
+        function <span class="apidocSignatureSpan">gulp-ruby-sass.</span>clearCache
+        <span class="apidocSignatureSpan">(tempDir)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">clearCache = function (tempDir) {
+	tempDir = tempDir || defaults.tempDir;
+	rimraf.sync(tempDir);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+);
+```
+
+### sass.logError(err)
+
+Convenience function for pretty error logging.
+
+### sass.<span class="apidocCodeKeywordSpan">clearCache</span>([tempDir])
+
+In rare cases you may need to clear gulp-ruby-sass's cache. This sync function deletes all files used for Sass caching. If
+you've set a custom temporary directory in your task you must pass it to `clearCache`.
+
+
+## Issues
+
+This plugin wraps the Sass gem for the gulp build system. It does not alter Sass's output in any way. Any issues with Sass
+output should be reported to the [Sass issue tracker](https://github.com/sass/sass/issues).
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.gulp-ruby-sass.logError" id="apidoc.element.gulp-ruby-sass.logError">
+        function <span class="apidocSignatureSpan">gulp-ruby-sass.</span>logError
+        <span class="apidocSignatureSpan">(err)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">logError = function (err) {
+	var message = new gutil.PluginError('gulp-ruby-sass', err);
+	process.stderr.write(message + '\n');
+	this.emit('end');
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+			loadPath: [ 'library', '../../shared-components' ]
+		})
+		.on('error', sass.logError)
+		.pipe(gulp.dest('result'))
+);
+```
+
+### sass.<span class="apidocCodeKeywordSpan">logError</span>(err)
+
+Convenience function for pretty error logging.
+
+### sass.clearCache([tempDir])
+
+In rare cases you may need to clear gulp-ruby-sass's cache. This sync function deletes all files used for Sass caching. If
+you've set a custom temporary directory in your task you must pass it to `clearCache`.
+...</pre></li>
+    </ul>
+
+
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.gulp-ruby-sass.logger" id="apidoc.module.gulp-ruby-sass.logger">module gulp-ruby-sass.logger</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.gulp-ruby-sass.logger.error" id="apidoc.element.gulp-ruby-sass.logger.error">
+        function <span class="apidocSignatureSpan">gulp-ruby-sass.logger.</span>error
+        <span class="apidocSignatureSpan">(stream, err)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">error = function (stream, err) {
+	if (err.code === 'ENOENT') {
+		// Spawn error: gems not installed
+		emitErr(stream, 'Gem ' + err.path + ' is not installed.');
+	}
+	else {
+		// Other errors
+		emitErr(stream, err);
+	}
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+	});
+
+	sass.stderr.on('data', function (data) {
+		logger.stderr(stream, intermediateDir, data);
+	});
+
+	sass.on('error', function (err) {
+		logger.<span class="apidocCodeKeywordSpan">error</span>(stream, err);
+	});
+
+	sass.on('close', function (code) {
+		if (options.emitCompileError &amp;&amp; code !== 0) {
+			emitErr(stream, 'Sass compilation failed. See console output for more information.');
+		}
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.gulp-ruby-sass.logger.prettifyDirectoryLogging" id="apidoc.element.gulp-ruby-sass.logger.prettifyDirectoryLogging">
+        function <span class="apidocSignatureSpan">gulp-ruby-sass.logger.</span>prettifyDirectoryLogging
+        <span class="apidocSignatureSpan">(msg, intermediateDir)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">prettifyDirectoryLogging = function (msg, intermediateDir) {
+	var escapedDir = escapeStringRegexp(intermediateDir);
+	return msg.replace(new RegExp(escapedDir + '/?', 'g'), './');
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+	}
+	// Sass error: directory missing
+	else if (/No such file or directory @ rb_sysopen/.test(data)) {
+		emitErr(stream, data.trim());
+	}
+	// Not an error: Sass logging
+	else {
+		data = logger.<span class="apidocCodeKeywordSpan">prettifyDirectoryLogging</span>(data, intermediateDir);
+		data = data.trim();
+		gutil.log(data);
+	}
+};
+
+logger.stderr = function (stream, intermediateDir, data) {
+	var bundlerMissing = /Could not find 'bundler' \((.*?)\)/.exec(data);
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.gulp-ruby-sass.logger.stderr" id="apidoc.element.gulp-ruby-sass.logger.stderr">
+        function <span class="apidocSignatureSpan">gulp-ruby-sass.logger.</span>stderr
+        <span class="apidocSignatureSpan">(stream, intermediateDir, data)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">stderr = function (stream, intermediateDir, data) {
+	var bundlerMissing = /Could not find 'bundler' \((.*?)\)/.exec(data);
+	var sassVersionMissing = /Could not find gem 'sass \((.*?)\) ruby'/.exec(data);
+
+	// Ruby error: Bundler gem not installed
+	if (bundlerMissing) {
+		emitErr(stream, 'ruby: Could not find \'bundler\' (' + bundlerMissing[1] + ').');
+	}
+	// Bundler error: no matching Sass version
+	else if (sassVersionMissing) {
+		emitErr(stream, 'bundler: Could not find gem \'sass (' + sassVersionMissing[1] + ')\'.');
+	}
+	// Sass error: file missing
+	else if (/No such file or directory @ rb_sysopen/.test(data)) {
+		emitErr(stream, data.trim());
+	}
+	// Not an error: Sass warnings, debug statements
+	else {
+		data = logger.prettifyDirectoryLogging(data, intermediateDir);
+		data = data.trim();
+		gutil.log(data);
+	}
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+	sass.stderr.setEncoding('utf8');
+
+	sass.stdout.on('data', function (data) {
+		logger.stdout(stream, intermediateDir, data);
+	});
+
+	sass.stderr.on('data', function (data) {
+		logger.<span class="apidocCodeKeywordSpan">stderr</span>(stream, intermediateDir, data);
+	});
+
+	sass.on('error', function (err) {
+		logger.error(stream, err);
+	});
+
+	sass.on('close', function (code) {
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.gulp-ruby-sass.logger.stdout" id="apidoc.element.gulp-ruby-sass.logger.stdout">
+        function <span class="apidocSignatureSpan">gulp-ruby-sass.logger.</span>stdout
+        <span class="apidocSignatureSpan">(stream, intermediateDir, data)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">stdout = function (stream, intermediateDir, data) {
+	// Bundler error: no Sass version found
+	if (/bundler: command not found: sass/.test(data)) {
+		emitErr(stream, 'bundler: command not found: sass');
+	}
+	// Bundler error: Gemfile not found
+	else if (/Could not locate Gemfile or .bundle\/ directory/.test(data)) {
+		emitErr(stream, 'bundler: could not locate Gemfile or .bundle directory');
+	}
+	// Sass error: directory missing
+	else if (/No such file or directory @ rb_sysopen/.test(data)) {
+		emitErr(stream, data.trim());
+	}
+	// Not an error: Sass logging
+	else {
+		data = logger.prettifyDirectoryLogging(data, intermediateDir);
+		data = data.trim();
+		gutil.log(data);
+	}
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+	var sass = spawn(command, args);
+
+	sass.stdout.setEncoding('utf8');
+	sass.stderr.setEncoding('utf8');
+
+	sass.stdout.on('data', function (data) {
+		logger.<span class="apidocCodeKeywordSpan">stdout</span>(stream, intermediateDir, data);
+	});
+
+	sass.stderr.on('data', function (data) {
+		logger.stderr(stream, intermediateDir, data);
+	});
+
+	sass.on('error', function (err) {
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.gulp-ruby-sass.logger.verbose" id="apidoc.element.gulp-ruby-sass.logger.verbose">
+        function <span class="apidocSignatureSpan">gulp-ruby-sass.logger.</span>verbose
+        <span class="apidocSignatureSpan">(command, args)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">verbose = function (command, args) {
+	gutil.log('Running command ' + command + ' ' + args.join(' '));
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+	}
+	else {
+		command = 'sass';
+	}
+
+	// plugin logging
+	if (options.verbose) {
+		logger.<span class="apidocCodeKeywordSpan">verbose</span>(command, args);
+	}
+
+	var sass = spawn(command, args);
+
+	sass.stdout.setEncoding('utf8');
+	sass.stderr.setEncoding('utf8');
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.gulp-ruby-sass.utils" id="apidoc.module.gulp-ruby-sass.utils">module gulp-ruby-sass.utils</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.gulp-ruby-sass.utils.calculateBase" id="apidoc.element.gulp-ruby-sass.utils.calculateBase">
+        function <span class="apidocSignatureSpan">gulp-ruby-sass.utils.</span>calculateBase
+        <span class="apidocSignatureSpan">(source)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">calculateBase = function (source) {
+	return glob2base(new glob.Glob(source));
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+	}
+
+	var matches = [];
+	var bases = [];
+
+	sources.forEach(function (source) {
+		matches.push(glob.sync(source));
+		bases.push(options.base || utils.<span class="apidocCodeKeywordSpan">calculateBase</span>(source));
+	});
+
+	// log and return stream if there are no file matches
+	if (matches[0].length &lt; 1) {
+		gutil.log('No files matched your Sass source.');
+		stream.push(null);
+		return stream;
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.gulp-ruby-sass.utils.createIntermediatePath" id="apidoc.element.gulp-ruby-sass.utils.createIntermediatePath">
+        function <span class="apidocSignatureSpan">gulp-ruby-sass.utils.</span>createIntermediatePath
+        <span class="apidocSignatureSpan">(sources, matches, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">createIntermediatePath = function (sources, matches, options) {
+	return path.join(
+		options.tempDir,
+		md5Hex(
+			process.cwd() +
+			JSON.stringify(sources) +
+			JSON.stringify(matches) +
+			JSON.stringify(options)
+		)
+	);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.gulp-ruby-sass.utils.emitErr" id="apidoc.element.gulp-ruby-sass.utils.emitErr">
+        function <span class="apidocSignatureSpan">gulp-ruby-sass.utils.</span>emitErr
+        <span class="apidocSignatureSpan">(stream, err)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">emitErr = function (stream, err) {
+	stream.emit('error', new gutil.PluginError('gulp-ruby-sass', err));
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.gulp-ruby-sass.utils.replaceLocation" id="apidoc.element.gulp-ruby-sass.utils.replaceLocation">
+        function <span class="apidocSignatureSpan">gulp-ruby-sass.utils.</span>replaceLocation
+        <span class="apidocSignatureSpan">(origPath, currentLoc, newLoc)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">replaceLocation = function (origPath, currentLoc, newLoc) {
+	return path.join(
+		newLoc,
+		path.relative(currentLoc, origPath)
+	);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
+</body></html>
