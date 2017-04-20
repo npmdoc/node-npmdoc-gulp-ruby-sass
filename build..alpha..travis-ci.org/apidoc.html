@@ -49,8 +49,6 @@
 <h1>api documentation for
     <a
 
-        href="https://github.com/sindresorhus/gulp-ruby-sass#readme"
-
     >gulp-ruby-sass (v2.1.1)</a>
 </h1>
 <h4>Compile Sass to CSS with Ruby Sass</h4>
@@ -60,6 +58,15 @@
 ><h1>table of contents</h1></a><ol>
 
     <li class="apidocModuleLi"><a href="#apidoc.module.gulp-ruby-sass">module gulp-ruby-sass</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.gulp-ruby-sass.gulp-ruby-sass">
+            function <span class="apidocSignatureSpan"></span>gulp-ruby-sass
+            <span class="apidocSignatureSpan">(sources, options)</span>
+            </a>
+
+        </li>
 
         <li>
 
@@ -186,6 +193,174 @@
 
 <div class="apidocSectionDiv">
 <h1><a href="#apidoc.module.gulp-ruby-sass" id="apidoc.module.gulp-ruby-sass">module gulp-ruby-sass</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.gulp-ruby-sass.gulp-ruby-sass" id="apidoc.element.gulp-ruby-sass.gulp-ruby-sass">
+        function <span class="apidocSignatureSpan"></span>gulp-ruby-sass
+        <span class="apidocSignatureSpan">(sources, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function gulpRubySass(sources, options) {
+	var stream = new Readable({objectMode: true});
+
+	// redundant but necessary
+	stream._read = function () {};
+
+	options = assign({}, defaults, options);
+
+	// alert user that `container` is deprecated
+	if (options.container) {
+		gutil.log(gutil.colors.yellow(&#x27;The container option has been deprecated. Simultaneous tasks work automatically now!&#x27;));
+	}
+
+	// error if user tries to watch their files with the Sass gem
+	if (options.watch || options.poll) {
+		emitErr(stream, &#x27;`watch` and `poll` are not valid options for gulp-ruby-sass. Use `gulp.watch` to rebuild your files on change
+.&#x27;);
+	}
+
+	// error if user tries to pass a Sass option to sourcemap
+	if (typeof options.sourcemap !== &#x27;boolean&#x27;) {
+		emitErr(stream, &#x27;The sourcemap option must be true or false. See the readme for instructions on using Sass sourcemaps with gulp
+.&#x27;);
+	}
+
+	options.sourcemap = options.sourcemap === true ? &#x27;file&#x27; : &#x27;none&#x27;;
+	options.update = true;
+
+	// simplified handling of array sources, like gulp.src
+	if (!Array.isArray(sources)) {
+		sources = [sources];
+	}
+
+	var matches = [];
+	var bases = [];
+
+	sources.forEach(function (source) {
+		matches.push(glob.sync(source));
+		bases.push(options.base || utils.calculateBase(source));
+	});
+
+	// log and return stream if there are no file matches
+	if (matches[0].length &#x3c; 1) {
+		gutil.log(&#x27;No files matched your Sass source.&#x27;);
+		stream.push(null);
+		return stream;
+	}
+
+	var intermediateDir = createIntermediatePath(sources, matches, options);
+	var compileMappings = [];
+	var baseMappings = {};
+
+	matches.forEach(function (matchArray, i) {
+		var base = bases[i];
+
+		matchArray.filter(function (match) {
+			// remove _partials
+			return path.basename(match).indexOf(&#x27;_&#x27;) !== 0;
+		})
+		.forEach(function (match) {
+			var dest = gutil.replaceExtension(
+				replaceLocation(match, base, intermediateDir),
+				&#x27;.css&#x27;
+			);
+			var relative = path.relative(intermediateDir, dest);
+
+			// source:dest mappings for the Sass CLI
+			compileMappings.push(match + &#x27;:&#x27; + dest);
+
+			// store base values by relative file path
+			baseMappings[relative] = base;
+		});
+	});
+
+	var args = dargs(options, [
+		&#x27;bundleExec&#x27;,
+		&#x27;watch&#x27;,
+		&#x27;poll&#x27;,
+		&#x27;tempDir&#x27;,
+		&#x27;verbose&#x27;,
+		&#x27;emitCompileError&#x27;,
+		&#x27;base&#x27;,
+		&#x27;container&#x27;
+	]).concat(compileMappings);
+
+	var command;
+
+	if (options.bundleExec) {
+		command = &#x27;bundle&#x27;;
+		args.unshift(&#x27;exec&#x27;, &#x27;sass&#x27;);
+	}
+	else {
+		command = &#x27;sass&#x27;;
+	}
+
+	// plugin logging
+	if (options.verbose) {
+		logger.verbose(command, args);
+	}
+
+	var sass = spawn(command, args);
+
+	sass.stdout.setEncoding(&#x27;utf8&#x27;);
+	sass.stderr.setEncoding(&#x27;utf8&#x27;);
+
+	sass.stdout.on(&#x27;data&#x27;, function (data) {
+		logger.stdout(stream, intermediateDir, data);
+	});
+
+	sass.stderr.on(&#x27;data&#x27;, function (data) {
+		logger.stderr(stream, intermediateDir, data);
+	});
+
+	sass.on(&#x27;error&#x27;, function (err) {
+		logger.error(stream, err);
+	});
+
+	sass.on(&#x27;close&#x27;, function (code) {
+		if (options.emitCompileError &#x26;&#x26; code !== 0) {
+			emitErr(stream, &#x27;Sass compilation failed. See console output for more information.&#x27;);
+		}
+
+		glob(path.join(intermediateDir, &#x27;**&#x27;, &#x27;*&#x27;), function (err, files) {
+			if (err) {
+				emitErr(stream, err);
+			}
+
+			eachAsync(files, function (file, i, next) {
+				if (fs.statSync(file).isDirectory() || path.extname(file) === &#x27;.map&#x27;) {
+					next();
+					return;
+				}
+
+				var relative = path.relative(intermediateDir, file);
+				var base = baseMappings[relative];
+
+				fs.readFile(file, function (err, data) {
+					if (err) {
+						emitErr(stream, err);
+						next();
+						return;
+					}
+
+					// rewrite file paths so gulp thinks the file came from cwd, not the
+					// intermediate directory
+					var vinylFile = new gutil.File({
+						cwd: process.cwd(),
+						base: base,
+						path: replaceLocation(file, intermediateDir, base)
+					});
+
+					// sourcemap integration
+					if (options.sourcemap === &#x27;file&#x27; &#x26;&#x26; pathExists.sync(file + &#x27;.map&#x27;)) {
+						// remove sourcemap comment; gulp-sourcemaps will add it back in
+						data = new Buffer(convert.removeMapFileComments(data.toString()));
+						var sourceMapObject = JSON.parse(fs.readFileSyn ...</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
 
 
     <h2>

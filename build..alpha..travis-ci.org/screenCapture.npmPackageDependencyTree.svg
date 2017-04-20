@@ -74,7 +74,7 @@
 <tspan x="10" y="1146">  │ ├── object-assign@3.0.0 </tspan>
 <tspan x="10" y="1162">  │ ├── replace-ext@0.0.1 </tspan>
 <tspan x="10" y="1178">  │ ├─┬ through2@2.0.3 </tspan>
-<tspan x="10" y="1194">  │ │ ├─┬ readable-stream@2.2.8 </tspan>
+<tspan x="10" y="1194">  │ │ ├─┬ readable-stream@2.2.9 </tspan>
 <tspan x="10" y="1210">  │ │ │ ├── buffer-shims@1.0.0 </tspan>
 <tspan x="10" y="1226">  │ │ │ ├── core-util-is@1.0.2 </tspan>
 <tspan x="10" y="1242">  │ │ │ ├── isarray@1.0.0 </tspan>
